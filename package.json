@@ -1,0 +1,39 @@
+{
+  "name": "maintainability-index",
+  "version": "1.0.0",
+  "description": "Archivos del articulo sobre el indice de mantenibilidad para Javascript",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jansanchez/maintainability-index.git"
+  },
+  "keywords": [
+    "escomplex",
+    "complexity",
+    "gulp",
+    "plato"
+  ],
+  "author": {
+    "name": "jansanchez",
+    "email": "joejansanchez@gmail.com",
+    "url": "http://frontendlabs.io/author/jansanchez"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jansanchez/escomplex-post/issues"
+  },
+  "homepage": "https://github.com/jansanchez/escomplex-post#readme",
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-complexity": "^0.3.2",
+    "gulp-jshint": "^2.0.0",
+    "install": "^0.4.1",
+    "jshint": "^2.8.0",
+    "jshint-stylish": "^2.1.0",
+    "npm": "^3.5.3",
+    "run-sequence": "^1.1.5"
+  }
+}
