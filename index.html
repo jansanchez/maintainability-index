@@ -1,8 +1,13 @@
 <meta charset="utf8">
 
+En este artículo hablaremos acerca del indice de mantenibilidad de software, pero orientado a Javascript. Es un
+tema interesante y personalmente considero que es una buena práctica utilizarlo en nuestros proyectos, estoy
+seguro que les ayudará muchísimo directa e indirectamente a realizar un código mucho más mantenible. A
+continuación veamos que es el indice de mantenibilidad y como aplicarlo en nuestro día a día. 
+
 <h2>Índice de mantenibilidad</h2>
 
-<p>El índice de mantenibilidad (IM) es un <b>modelo de mantenibilidad de software</b> que fue propuesto por Omán y Hagemeister en la Universidad de Idaho(1994), este modelo consiste en un número de <b>métricas calculadas fácilmente</b>, y que es capaz de predecir fácil y rápidamente <b>la mantenibilidad de un producto de software</b>.
+<p>El índice de mantenibilidad (IM) es un <b>modelo de mantenibilidad de software</b> que fue propuesto por Omán y Hagemeister en la Universidad de Idaho(1991), este modelo consiste en un número de <b>métricas calculadas fácilmente</b>, y que es capaz de predecir fácil y rápidamente <b>la mantenibilidad de un producto de software</b>.
 </p>
 
 <p>El Índice de mantenibilidad está dado como una ecuación polinómica compuesta por variables predictoras. A través de una serie de estudios se ha demostrado que hay una fuerte correlación entre la Mantenibilidad de software y las variables predictoras como <b>Complejidad Ciclomática de McCabe</b>, <b>Volumen Halstead</b>, <b>Número de Líneas de código</b>, y el <b>Número de comentarios de código</b>.
@@ -23,49 +28,68 @@ IM2 = 171 – 5.2 * ln(aveV) – 0.23 * aveV(g') – 16.2 * ln(aveLOC) + 50 * si
 </code></pre>
 
 <br>
+<p>
 <b>Donde:</b>
-<p><b>aveV</b>         = Es el porcentaje de Esfuerzo Halstead por módulo</p>
-<p><b>aveV (g ')</b> = Es el promedio de la complejidad ciclomática extendida por módulo</p>
-<p><b>aveLOC</b>    = Es el porcentaje del número de líneas de código por módulo</p>
-<p><b>perCM</b>     = Es el porcentaje de líneas de comentarios por módulo</p>
+</p>
+<p>
+<b>aveV</b>         = Es el porcentaje de Esfuerzo Halstead por módulo
+<b>aveV (g ')</b> = Es el promedio de la complejidad ciclomática extendida por módulo
+<b>aveLOC</b>    = Es el porcentaje del número de líneas de código por módulo
+<b>perCM</b>     = Es el porcentaje de líneas de comentarios por módulo</p>
 
 <p>
-Los componentes se calculan a nivel de módulo, y luego son promediados. La palabra 'módulo' utilizado aquí
-significa la unidad más pequeña de la funcionalidad. Dependiendo del lenguaje de programación, esta puede ser una función, procedimiento, método, subrutina o sección.</p>
+Los componentes se calculan a nivel de módulo, y luego son promediados. La palabra <b>'módulo'</b> utilizada aquí significa la unidad más pequeña de la funcionalidad. Dependiendo del lenguaje de programación, esta puede ser una función, procedimiento, método, subrutina o sección.</p>
 
 <p>
-La Fórmula 2, que incluye el porcentaje de comentarios, sólo debe utilizarse si los comentarios son válidos, en lugar de, por ejemplo trozos de código del programa que han sido comentados.
-De lo contrario, se debe utilizar la Fórmula 1 (SEI, 2002).</p>
+La <b>Fórmula 2</b>, que incluye el porcentaje de líneas de comentarios(perCM), sólo debe utilizarse si los comentarios son válidos, en lugar de, por ejemplo trozos de código del programa que han sido comentados. De lo contrario, se debe utilizar la <b>Fórmula 1</b> (SEI, 2002).</p>
 
 <p><b>Mientras más alto sea el número, mayor será la mantenibilidad del software</b>. Los límites identificados son los siguientes (Omán y Hagemeister, 1994; Welker et al, 1997):</p>
 
 
 <table>
+<thead>
 <tr>
-<td>Matenibilidad</td>
-<td>Fórmula 1</td>
-<td>Fórmula 2</td>
+<td><b>Mantenibilidad</b></td>
+<td><b>Fórmula 1</b></td>
+<td><b>Fórmula 2</b></td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><b>Alto</b></td>
+<td>IM >= 50</td>
+<td>IM >= 85</td>
 </tr>
 <tr>
-<td>Alto</td>
-<td>2</td>
-<td>3</td>
+<td><b>Moderado</b></td>
+<td>-</td>
+<td>65 <= IM < 85</td>
 </tr>
 <tr>
-<td>Moderado</td>
-<td>2</td>
-<td>3</td>
+<td><b>Bajo</b></td>
+<td>IM < 50</td>
+<td>IM < 65</td>
 </tr>
-<tr>
-<td>Bajo</td>
-<td>2</td>
-<td>3</td>
-</tr>
+</tbody>
 </table>
 
+<p>
+Además de usar el Índice de mantenibilidad a nivel del sistema, otra forma de uso es calcular el Índice de mantenibilidad a nivel de módulo para todos los módulos de un sistema. Con este enfoque, se pueden identificar los módulos con el Índice de mantenibilidad más bajo, que se cree que son los módulos con la mayor necesidad de ser mejorados (Oppedijk, 2008, 36 pp). Este último enfoque es en el que nos vamos a basar para probar el Índice de mantenibilidad en el lado cliente de las aplicaciones web.
+</p>
+
+
+<h2>El Indice de mantenibilidad y Javascript</h2>
+
+<p>
+Como podemos ver, el indice de mantenibilidad se puede utilizar para saber cuan mantenible es nuestro código,
+Debido a esto en el año 2012 nuestro amigo Phil Booth decidió implementar el indice de mantenibilidad y otras
+métricas de código fuente en el lenguaje Javascript en el paquete npm llamado <a
+href="https://www.npmjs.com/package/escomplex" target="_blank" title="escomplex">escomplex</a>.
+</p>
 
 
 <h2>xxx</h2>
 <pre class="prettyprint lang-js"><code>npm install -g npm-check-updates </code></pre>
 
 
+<p></p>
