@@ -27,13 +27,7 @@
   },
   "homepage": "https://github.com/jansanchez/maintainability-index#readme",
   "devDependencies": {
-    "gulp": "^3.9.0",
-    "gulp-complexity": "^0.3.2",
-    "gulp-jshint": "^2.0.0",
-    "install": "^0.4.1",
-    "jshint": "^2.8.0",
-    "jshint-stylish": "^2.1.0",
-    "npm": "^3.5.3",
-    "run-sequence": "^1.1.5"
+    "gulp": "https://registry.npmjs.org/gulp/-/gulp-3.9.0.tgz",
+    "gulp-complexity": "https://registry.npmjs.org/gulp-complexity/-/gulp-complexity-0.3.2.tgz"
   }
 }

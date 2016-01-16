@@ -1,5 +1,3 @@
-que <meta charset="utf8">
-
 En este artículo hablaremos acerca del indice de mantenibilidad de software, pero orientado a Javascript. Es un tema interesante y personalmente considero que es una buena práctica utilizarlo en nuestros proyectos, estoy seguro que les ayudará directa e indirectamente a realizar un código mucho más mantenible. A continuación veamos qué es el indice de mantenibilidad y cómo aplicarlo en nuestro día a día. 
 
 <h2>Índice de mantenibilidad</h2>
@@ -78,17 +76,57 @@ IM2 = 171 – 5.2 * ln(aveV) – 0.23 * aveV(g') – 16.2 * ln(aveLOC) + 50 * si
 
 <h3>Instalando gulp-complexity</h3> 
 
-Para llevar esto a cabo crearemos una carpeta llamada <span class="inline_folder">mi</span>, ingresamos a la carpeta creada y ejecutamos el comando <span class="inline_code">npm init</span> e ingresamos toda la información que nos solicita npm, para así poder <a href="http://frontendlabs.io/1669--gulp-js-en-espanol-tutorial-basico-primeros-pasos-y-ejemplos#como_usar_gulp" title="Npm init" target="_blank">crear</a> el archivo <a href="https://raw.githubusercontent.com/jansanchez/maintainability-index/master/package.json" title="package.json" target="_blank">package.json</a> que contendrá toda la información de nuestro nuevo proyecto.
+<p>Para llevar esto a cabo crearemos una carpeta llamada <span class="inline_folder">mi</span>, ingresamos a la carpeta creada y ejecutamos el comando <span class="inline_code">npm init</span> e ingresamos toda la información que nos solicita npm, para así poder <a href="http://frontendlabs.io/1669--gulp-js-en-espanol-tutorial-basico-primeros-pasos-y-ejemplos#como_usar_gulp" title="Npm init" target="_blank">crear</a> el archivo <a href="https://raw.githubusercontent.com/jansanchez/maintainability-index/master/package.json" title="package.json" target="_blank">package.json</a> que contendrá toda la información de nuestro nuevo proyecto.</p>
 
-Una vez que ya tenemos eso creado procedemos a instalar el paquete gulp-complexity, como una dependencia de desarrollo, mediante el siguiente comando:
+
+<p>Una vez que ya tenemos eso creado procedemos a instalar el paquete gulp, como una dependencia de desarrollo, mediante el comando:</p>
+
+<pre class="prettyprint lang-js"><code>npm install --save-dev gulp</code></pre>
+
+<p>Luego instalamos el paquete gulp-complexity, mediante el comando:</p>
 
 <pre class="prettyprint lang-js"><code>npm install --save-dev gulp-complexity</code></pre>
 
+<p>Una vez hecho esto procederemos a descargar código fuente para validar... por ejemplo usaremos el source de jQuery acerca de <b>manipulation</b> y <b>queue</b> con el siguiente comando(estando dentro de nuestra carpeta "mi"):</p>
+
+<pre class="prettyprint lang-js"><code>git clone https://github.com/jansanchez/jquery-for-test.git</code></pre>
+
+<p>Ahora procederemos a crear el archivo <span>gulpfile.js</span> y escribiremos el siguiente contenido:</p>
+
+<pre class="prettyprint lang-js"><code>
+/*!!
+ *
+ * gulpfile.js
+ * @author: Jan Sanchez
+ *
+ */
+
+var gulp = require('gulp'),
+	mi = require('gulp-complexity');
 
 
+/*!!
+ *
+ * Tarea para evaluar la mantenibilidad
+ * del código fuente 
+ *
+ */
 
+gulp.task('mi', function(){
+	return gulp.src('jquery-for-test/**/**/*.js')
+	.pipe(mi({breakOnErrors: false}));
+});
+</code></pre>
 
-Si les gusto el artículo, por favor compartanlo, para que cada vez más gente conozca un poco más sobre el indice de mantenibilidad y las métricas de código fuente que existen para el lenguaje de programación Javascript.
+<p>Con esto hemos creado la tarea <span class="inline_code">mi</span>, que ya podemos ejecutar escribiendo el siguiente comando:</p>
+
+<pre class="prettyprint lang-js"><code>gulp mi</code></pre>
+
+<p>Y podremos ver el indice de mantenibilidad y las observaciones que gulp-complexity tiene acerca de el código que ha sido revisado.</p>
+
+<img src="http://frontendlabs.io/wp-content/uploads/2016/01/indice-mantenibilidad-javascript.png" alt="indice-mantenibilidad-javascript" width="931" height="527" class="aligncenter size-full wp-image-3129" />
+
+<p>Si les gusto el artículo, por favor compartanlo, para que cada vez más gente conozca un poco más sobre el indice de mantenibilidad y las métricas de código fuente que existen para el lenguaje de programación Javascript.</p>
 
 <h2>Referencias bibliográficas:</h2>
 
@@ -101,11 +139,3 @@ SEI, VanDoren, E. Maintainability Index Technique for Measuring Program Maintain
 
 WELKER, K.D., OMAN, P.W., y ATKINSON, G.G. Development and application of an automated source code maintainability Index. In Journal of Software Maintenance. [s.l.]: 1997, vol. 9(3), 127-159 pp.
 
-
-
-
-<h2>xxx</h2>
-<pre class="prettyprint lang-js"><code>npm install -g npm-check-updates </code></pre>
-
-
-<p></p>
