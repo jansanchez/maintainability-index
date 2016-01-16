@@ -17,6 +17,6 @@ var gulp = require('gulp'),
  */
 
 gulp.task('mi', function(){
-	return gulp.src('jquery-for-test/**/**/*.js')
+	return gulp.src(['jquery-for-test/**/**/*.js'])
 	.pipe(mi({breakOnErrors: false}));
 });

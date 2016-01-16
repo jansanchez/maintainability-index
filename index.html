@@ -5,7 +5,8 @@ En este artículo hablaremos acerca del indice de mantenibilidad de software, pe
 <p>El índice de mantenibilidad (IM) es un <b>modelo de mantenibilidad de software</b> que fue propuesto por Omán y Hagemeister en la Universidad de Idaho(1991), este modelo consiste en un número de <b>métricas calculadas fácilmente</b>, y que es capaz de predecir fácil y rápidamente <b>la mantenibilidad de un producto de software</b>.
 </p>
 
-<p>El Índice de mantenibilidad está dado como una ecuación polinómica compuesta por variables predictoras. A través de una serie de estudios se ha demostrado que hay una fuerte correlación entre la Mantenibilidad de software y las variables predictoras como <b>Complejidad Ciclomática de McCabe</b>, <b>Volumen Halstead</b>, <b>Número de Líneas de código</b>, y el <b>Número de comentarios de código</b>.
+<p>El Índice de mantenibilidad está dado como una ecuación polinómica compuesta por variables predictoras.
+A través de una serie de estudios se ha demostrado que hay una fuerte correlación entre la Mantenibilidad de software y las variables predictoras como <b>Complejidad Ciclomática de McCabe</b>, <b>Volumen Halstead</b>, <b>Número de Líneas de código</b>, y el <b>Número de comentarios de código</b>.
 </p>
 
 <p>El Índice de mantenibilidad tiene dos variantes, que sólo difieren en el último componente (SEI, 2002):</p>
@@ -30,7 +31,7 @@ IM2 = 171 – 5.2 * ln(aveV) – 0.23 * aveV(g') – 16.2 * ln(aveLOC) + 50 * si
 <b>aveLOC</b>    = Es el porcentaje del número de líneas de código por módulo
 <b>perCM</b>     = Es el porcentaje de líneas de comentarios por módulo</p>
 
-<p>Los componentes se calculan a nivel de módulo, y luego son promediados. La palabra <b>'módulo'</b> utilizada aquí significa la unidad más pequeña de la funcionalidad. Dependiendo del lenguaje de programación, esta puede ser una función, procedimiento, método, subrutina o sección.</p>
+<p>Los componentes se calculan a nivel de módulo, y luego son promediados. La palabra <b>'módulo'</b> utilizada aquí significa <b>la unidad más pequeña de la funcionalidad</b>. Dependiendo del lenguaje de programación, esta puede ser una función, procedimiento, método, subrutina o sección.</p>
 
 <p>La <b>Fórmula 2</b>, que incluye el porcentaje de líneas de comentarios(perCM), sólo debe utilizarse si los comentarios son válidos, en lugar de, por ejemplo trozos de código del programa que han sido comentados. De lo contrario, se debe utilizar la <b>Fórmula 1</b> (SEI, 2002).</p>
 
@@ -63,12 +64,14 @@ IM2 = 171 – 5.2 * ln(aveV) – 0.23 * aveV(g') – 16.2 * ln(aveLOC) + 50 * si
 </tbody>
 </table>
 
-<p>Además de usar el Índice de mantenibilidad a nivel del sistema, otra forma de uso es calcular el Índice de mantenibilidad a nivel de módulo para todos los módulos de un sistema. Con este enfoque, se pueden identificar los módulos con el Índice de mantenibilidad más bajo, que fse cree que son los módulos con la mayor necesidad de ser mejorados (Oppedijk, 2008, 36 pp). Este último enfoque es en el que nos vamos a basar para probar el Índice de mantenibilidad <b>en el lado cliente de las aplicaciones web</b>.</p>
+<p>Además de usar el Índice de mantenibilidad a nivel del sistema, otra forma de uso es calcular el Índice de mantenibilidad a nivel de módulo para todos los módulos de un sistema. Con este enfoque, se pueden identificar los módulos con el Índice de mantenibilidad más bajo, que se cree que son los módulos con la mayor necesidad de ser mejorados (Oppedijk, 2008, 36 pp).</p>
+
+<p>En este último enfoque es en el que nos vamos a basar para probar el Índice de mantenibilidad <b>en el lado cliente de las aplicaciones web</b>.</p>
 
 
 <h2>El Indice de mantenibilidad y Javascript</h2>
 
-<p>En el año 2012 nuestro amigo <a href="https://github.com/philbooth" target="_blank" title="Phil Booth - Github">Phil Booth</a> decidió implementar el indice de mantenibilidad y otras métricas de código fuente para el lenguaje Javascript en el paquete npm llamado <a href="https://www.npmjs.com/package/escomplex" target="_blank" title="escomplex">escomplex</a>, luego utilizando este paquete se creó el paquete <a href="https://www.npmjs.com/package/gulp-complexity" target="_blank" title="gulp-complexity">gulp-complexity</a>, que es el que utilizaremos para probar rápidamente el indice de mantenibilidad en nuestros proyectos!.</p>
+<p>En el año 2012 nuestro amigo <a href="https://github.com/philbooth" target="_blank" title="Phil Booth - Github">Phil Booth</a> decidió implementar el indice de mantenibilidad y <a href="https://www.npmjs.com/package/escomplex#metrics" target="_blank" title="métricas de código fuente">otras métricas</a> de código fuente para el lenguaje Javascript en el paquete npm llamado <a href="https://www.npmjs.com/package/escomplex" target="_blank" title="escomplex">escomplex</a>, luego utilizando este paquete se creó el paquete <a href="https://www.npmjs.com/package/gulp-complexity" target="_blank" title="gulp-complexity">gulp-complexity</a>, que es el que utilizaremos para probar rápidamente el indice de mantenibilidad en nuestros proyectos!.</p>
 
 
 
@@ -102,8 +105,7 @@ IM2 = 171 – 5.2 * ln(aveV) – 0.23 * aveV(g') – 16.2 * ln(aveLOC) + 50 * si
  */
 
 var gulp = require('gulp'),
-	mi = require('gulp-complexity');
-
+    mi = require('gulp-complexity');
 
 /*!!
  *
@@ -113,8 +115,8 @@ var gulp = require('gulp'),
  */
 
 gulp.task('mi', function(){
-	return gulp.src('jquery-for-test/**/**/*.js')
-	.pipe(mi({breakOnErrors: false}));
+    return gulp.src(['jquery-for-test/**/**/*.js'])
+    .pipe(mi({breakOnErrors: false}));
 });
 </code></pre>
 
@@ -122,11 +124,32 @@ gulp.task('mi', function(){
 
 <pre class="prettyprint lang-js"><code>gulp mi</code></pre>
 
-<p>Y podremos ver el indice de mantenibilidad y las observaciones que gulp-complexity tiene acerca de el código que ha sido revisado.</p>
+<p>Y podremos ver el indice de mantenibilidad para cada archivo y las observaciones que gulp-complexity tiene acerca de el código que ha sido revisado.</p>
 
 <img src="http://frontendlabs.io/wp-content/uploads/2016/01/indice-mantenibilidad-javascript.png" alt="indice-mantenibilidad-javascript" width="931" height="527" class="aligncenter size-full wp-image-3129" />
 
 
+<h3>Revisando las observaciones</h3>
+
+<p>Como podemos apreciar, todos estos archivos han pasado correctamente la validación, a su vez podemos observar que los archivos que tienen un valor de más de 120 de indice de mantenibilidad se muestran con una barra de color verde, mientras que los que tienen menos de 120 se muestran con un color amarillo, pero ninguno de estos tiene ningún mensaje, ni observación en el código, lo cual quiere decir que estos archivos son altamente mantenibles según esta métrica.</p>
+
+<img src="http://frontendlabs.io/wp-content/uploads/2016/01/indice-mantenibilidad-javascript-ok.png" alt="indice-mantenibilidad-javascript-ok" width="797" height="155" class="aligncenter size-full wp-image-3131" />
+
+<p>En cambio los archivos: <span class="inline_file">manipulation/buildFragment.js</span>, <span class="inline_file">manipulation/getAll.js</span>, <span class="inline_file">manipulation/setGlobalEval.js</span> no han pasado la prueba, a continuación veremos por qué?</p>
+
+
+<img src="http://frontendlabs.io/wp-content/uploads/2016/01/indice-mantenibilidad-javascript-fail.png" alt="indice-mantenibilidad-javascript-fail" width="715" height="342" class="aligncenter size-full wp-image-3132" />
+
+<p>Primero revisaremos el mensaje acerca del archivo: <span class="inline_file">manipulation/buildFragment.js</span>. <br>
+El mensaje nos dice que en la línea número <b>12</b> de este script se encuentra la función <span class="inline_code">buildFragment</span> la cual probablemente sea <b>demasiada complicada</b> para ser entendida por un ser humano.</p>
+
+<p>La misma tiene un valor de <a href="https://es.wikipedia.org/wiki/Complejidad_ciclom%C3%A1tica" title="Complejidad ciclomática" target="_blank">Complejidad ciclomática</a> de <b>14</b> y un valor de <a href="https://en.wikipedia.org/wiki/Halstead_complexity_measures" title="Métricas Halstead" target="_blank">Halstead</a> de <b>31.49</b>, el mismo que proviene de un valor de Esfuerzo de <b>51 068</b>, de Volumen de <b>1621</b> y un Vocabulario de <b>73</b> palabras en total. No olvidemos que todos estos valores vienen de fórmulas y los resultados son directamente proporcionales a la cantidad del código fuente que contenga cada archivo.</p>
+
+<p>El valor más importante de esta métrica es la complejidad ciclomatica, por eso nos centraremos en esta, debemos revisar el archivo y lo más probable es que encontremos una gran función con demasiados caminos lógicos(<i>if</i>, <i>else</i>, <i>else if</i>)</p>
+
+
+
+<p>"Es importante tener en cuenta que ninguna de estas métricas pueden competir con la visión y/o percepción de un desarrollador competente. A lo sumo, son un sistema de alerta automática, que puede ayudar a identificar áreas de código que justifican una inspección más cercana por un ser humano". (Phil Booth, 2012)</p>
 
 <p>Si les gusto el artículo, por favor compartanlo, para que cada vez más gente conozca un poco más sobre el indice de mantenibilidad y las métricas de código fuente que existen para el lenguaje de programación Javascript.</p>
 
