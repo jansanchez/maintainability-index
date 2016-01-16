@@ -1,6 +1,6 @@
 que <meta charset="utf8">
 
-En este artículo hablaremos acerca del indice de mantenibilidad de software, pero orientado a Javascript. Es un tema interesante y personalmente considero que es una buena práctica utilizarlo en nuestros proyectos, estoy seguro que les ayudará muchísimo directa e indirectamente a realizar un código mucho más mantenible. A continuación veamos qué es el indice de mantenibilidad y cómo aplicarlo en nuestro día a día. 
+En este artículo hablaremos acerca del indice de mantenibilidad de software, pero orientado a Javascript. Es un tema interesante y personalmente considero que es una buena práctica utilizarlo en nuestros proyectos, estoy seguro que les ayudará directa e indirectamente a realizar un código mucho más mantenible. A continuación veamos qué es el indice de mantenibilidad y cómo aplicarlo en nuestro día a día. 
 
 <h2>Índice de mantenibilidad</h2>
 
@@ -36,7 +36,7 @@ IM2 = 171 – 5.2 * ln(aveV) – 0.23 * aveV(g') – 16.2 * ln(aveLOC) + 50 * si
 
 <p>La <b>Fórmula 2</b>, que incluye el porcentaje de líneas de comentarios(perCM), sólo debe utilizarse si los comentarios son válidos, en lugar de, por ejemplo trozos de código del programa que han sido comentados. De lo contrario, se debe utilizar la <b>Fórmula 1</b> (SEI, 2002).</p>
 
-<p><b>Mientras más alto sea el número, mayor será la mantenibilidad del software</b>. Los límites identificados son los siguientes (Omán y Hagemeister, 1994; Welker et al, 1997):</p>
+<p><b>Mientras más alto sea el número, mayor será la mantenibilidad del software</b>. Los límites identificados son los siguientes (Omán et al, 1994; Welker et al, 1997):</p>
 
 <table>
 <thead>
@@ -65,12 +65,43 @@ IM2 = 171 – 5.2 * ln(aveV) – 0.23 * aveV(g') – 16.2 * ln(aveLOC) + 50 * si
 </tbody>
 </table>
 
-<p>Además de usar el Índice de mantenibilidad a nivel del sistema, otra forma de uso es calcular el Índice de mantenibilidad a nivel de módulo para todos los módulos de un sistema. Con este enfoque, se pueden identificar los módulos con el Índice de mantenibilidad más bajo, que se cree que son los módulos con la mayor necesidad de ser mejorados (Oppedijk, 2008, 36 pp). Este último enfoque es en el que nos vamos a basar para probar el Índice de mantenibilidad en el lado cliente de las aplicaciones web.</p>
+<p>Además de usar el Índice de mantenibilidad a nivel del sistema, otra forma de uso es calcular el Índice de mantenibilidad a nivel de módulo para todos los módulos de un sistema. Con este enfoque, se pueden identificar los módulos con el Índice de mantenibilidad más bajo, que fse cree que son los módulos con la mayor necesidad de ser mejorados (Oppedijk, 2008, 36 pp). Este último enfoque es en el que nos vamos a basar para probar el Índice de mantenibilidad <b>en el lado cliente de las aplicaciones web</b>.</p>
 
 
 <h2>El Indice de mantenibilidad y Javascript</h2>
 
-<p>Como podemos ver, el indice de mantenibilidad se puede utilizar para saber cuan mantenible es nuestro código, debido a esto en el año 2012 nuestro amigo Phil Booth decidió implementar el indice de mantenibilidad y otras métricas de código fuente en el lenguaje Javascript en el paquete npm llamado <a href="https://www.npmjs.com/package/escomplex" target="_blank" title="escomplex">escomplex</a>, luego utilizando este paquete se creó el paquete <a href="https://www.npmjs.com/package/gulp-complexity" target="_blank" title="gulp-complexity">gulp-complexity</a>, que es el que utilizaremos para probar rápidamente el indice de mantenibilidad en nuestros proyectos, entonces empecemos!.</p>
+<p>En el año 2012 nuestro amigo <a href="https://github.com/philbooth" target="_blank" title="Phil Booth - Github">Phil Booth</a> decidió implementar el indice de mantenibilidad y otras métricas de código fuente para el lenguaje Javascript en el paquete npm llamado <a href="https://www.npmjs.com/package/escomplex" target="_blank" title="escomplex">escomplex</a>, luego utilizando este paquete se creó el paquete <a href="https://www.npmjs.com/package/gulp-complexity" target="_blank" title="gulp-complexity">gulp-complexity</a>, que es el que utilizaremos para probar rápidamente el indice de mantenibilidad en nuestros proyectos!.</p>
+
+
+
+<h2>gulp-complexity</h2>
+
+<h3>Instalando gulp-complexity</h3> 
+
+Para llevar esto a cabo crearemos una carpeta llamada <span class="inline_folder">mi</span>, ingresamos a la carpeta creada y ejecutamos el comando <span class="inline_code">npm init</span> e ingresamos toda la información que nos solicita npm, para así poder <a href="http://frontendlabs.io/1669--gulp-js-en-espanol-tutorial-basico-primeros-pasos-y-ejemplos#como_usar_gulp" title="Npm init" target="_blank">crear</a> el archivo <a href="https://raw.githubusercontent.com/jansanchez/maintainability-index/master/package.json" title="package.json" target="_blank">package.json</a> que contendrá toda la información de nuestro nuevo proyecto.
+
+Una vez que ya tenemos eso creado procedemos a instalar el paquete gulp-complexity, como una dependencia de desarrollo, mediante el siguiente comando:
+
+<pre class="prettyprint lang-js"><code>npm install --save-dev gulp-complexity</code></pre>
+
+
+
+
+
+Si les gusto el artículo, por favor compartanlo, para que cada vez más gente conozca un poco más sobre el indice de mantenibilidad y las métricas de código fuente que existen para el lenguaje de programación Javascript.
+
+<h2>Referencias bibliográficas:</h2>
+
+OMAN, P., COLEMAN, D., ASH, D., LOWTHER, B. Using Metrics to Evaluate Software System Maintainability. [s.l.]: IEEE Computer, 1994, vol. 27(8), 44-49 pp.
+
+OPPEDIJK, Frank. Comparison of the SIG Maintainability Model and the Maintainability Index. Tesis (Magíster en Ingeniería de Software). Ámsterdam: University of Amsterdam Faculty of Science, 2008. 36 pp. 
+Disponible en: <a href="http://homepages.cwi.nl/~paulk/thesesMasterSoftwareEngineering/2008/FrankOppedijk.pdf" title="Comparison of the SIG Maintainability Model and the Maintainability Index" target="_blank">Maintainability Index Thesis</a>
+
+SEI, VanDoren, E. Maintainability Index Technique for Measuring Program Maintainability. [s.l.]: Software Engineering Institute, Carnegie Mellon University, 2002. Disponible en: <a href="http://www.sei.cmu.edu/activities/str/descriptions/mitmpm_body.html" title="Maintainability Index Technique for Measuring Program Maintainability" target="_blank">Maintainability Index Technique for Measuring Program Maintainability</a>
+
+WELKER, K.D., OMAN, P.W., y ATKINSON, G.G. Development and application of an automated source code maintainability Index. In Journal of Software Maintenance. [s.l.]: 1997, vol. 9(3), 127-159 pp.
+
+
 
 
 <h2>xxx</h2>

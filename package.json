@@ -23,9 +23,9 @@
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/jansanchez/escomplex-post/issues"
+    "url": "https://github.com/jansanchez/maintainability-index/issues"
   },
-  "homepage": "https://github.com/jansanchez/escomplex-post#readme",
+  "homepage": "https://github.com/jansanchez/maintainability-index#readme",
   "devDependencies": {
     "gulp": "^3.9.0",
     "gulp-complexity": "^0.3.2",
