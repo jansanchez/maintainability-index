@@ -1,3 +1,4 @@
+<meta charset="utf-8">
 En este artículo hablaremos acerca del indice de mantenibilidad de software, pero orientado a Javascript. Es un tema interesante y personalmente considero que es una buena práctica utilizarlo en nuestros proyectos, estoy seguro que les ayudará directa e indirectamente a realizar un código mucho más mantenible. A continuación veamos qué es el indice de mantenibilidad y cómo aplicarlo en nuestro día a día. 
 
 <h2>Indice de mantenibilidad</h2>
@@ -69,9 +70,40 @@ IM2 = 171 – 5.2 * ln(aveV) – 0.23 * aveV(g') – 16.2 * ln(aveLOC) + 50 * si
 <p>En este último enfoque es en el que nos vamos a basar para probar el Indice de mantenibilidad <b>en el lado cliente de las aplicaciones web</b>.</p>
 
 
+<h2>Complejidad ciclomática</h2>
+
+<p>Complejidad Ciclomática es una métrica de software que fue desarrollada por Thomas McCabe. Se utiliza para medir la complejidad de un programa (McCabe, 1976). Mide el número de caminos linealmente independientes a través del código fuente de un programa. La Complejidad Ciclomática se puede calcular de varias maneras. En la primera forma, un módulo o programa es considerado como un gráfico matemático. Para este caso es dada la siguiente fórmula:
+</p>
+
+<p>
+<b>V(g) = e - n + p</b>
+</p>
+
+</p>Donde:</p>
+
+<p>e = número de aristas en un gráfico,
+n = número de nodos en un gráfico, y
+p = número de componentes conectados, nodos de salida</p>
+
+<p>La forma alternativa es contar el número de puntos de decisión (sentencias if, sentencias while, etcétera) en un módulo o programa, y aumentar esté en uno. Ambos métodos producen el mismo resultado. Es por eso que para facilitar el aprendizaje de este concepto usaremos la forma alternativa para contabilizar el valor de la complejidad ciclomática, cuya fórmula sería la siguiente:</p>
+
+<p>
+<b>V(g) = Número de condiciones + 1</b>
+</p>
+
+Así debemos saber que cuando dentro de un código haya por ejemplo <b>3</b> sentencias if, la complejidad ciclomática tiene un valor de <b>4</b>, aplicando la fórmula mentalmente sería así:
+
+<p>
+<b>V(g) = Número de condiciones + 1</b><br>
+<b>V(g) = 3 + 1</b><br>
+<b>V(g) = 4</b>
+</p>
+
+<p>Con esto aprendímos como calcular la complejidad ciclomática de código fuente, en cualquier lenguaje de programación.</p>
+
 <h2>El Indice de mantenibilidad y Javascript</h2>
 
-<p>En el año 2012 <a href="https://github.com/philbooth" target="_blank" title="Phil Booth - Github">Phil Booth</a> decidió implementar el indice de mantenibilidad y <a href="https://www.npmjs.com/package/escomplex#metrics" target="_blank" title="métricas de código fuente">otras métricas</a> de código fuente para el lenguaje Javascript en el paquete npm llamado <a href="https://www.npmjs.com/package/escomplex" target="_blank" title="escomplex">escomplex</a>, luego utilizando este paquete se creó el paquete <a href="https://www.npmjs.com/package/gulp-complexity" target="_blank" title="gulp-complexity">gulp-complexity</a>, que es el que utilizaremos para probar rápidamente el indice de mantenibilidad en nuestros proyectos, a continuación mostraremos como hacerlo!.</p>
+<p>En el año 2012 <a href="https://github.com/philbooth" target="_blank" title="Phil Booth - Github">Phil Booth</a> implementó el indice de mantenibilidad y <a href="https://www.npmjs.com/package/escomplex#metrics" target="_blank" title="métricas de código fuente">otras métricas</a> de código fuente para el lenguaje Javascript en el paquete npm llamado <a href="https://www.npmjs.com/package/escomplex" target="_blank" title="escomplex">escomplex</a>, luego utilizando este paquete se creó el paquete <a href="https://www.npmjs.com/package/gulp-complexity" target="_blank" title="gulp-complexity">gulp-complexity</a>, que es el que utilizaremos para probar rápidamente el indice de mantenibilidad en nuestros proyectos, a continuación mostraremos como hacerlo!.</p>
 
 
 <h2>gulp-complexity</h2>
@@ -81,7 +113,7 @@ IM2 = 171 – 5.2 * ln(aveV) – 0.23 * aveV(g') – 16.2 * ln(aveLOC) + 50 * si
 <p>Para llevar esto a cabo crearemos una carpeta llamada <span class="inline_folder">mi</span>, ingresamos mediante consola a la carpeta creada y ejecutamos el comando <span class="inline_code">npm init</span>, completamos toda la información que nos solicita npm, para así poder <a href="http://frontendlabs.io/1669--gulp-js-en-espanol-tutorial-basico-primeros-pasos-y-ejemplos#como_usar_gulp" title="Npm init" target="_blank">crear</a> el archivo <a href="https://raw.githubusercontent.com/jansanchez/maintainability-index/master/package.json" title="package.json" target="_blank">package.json</a> que contendrá toda la información de nuestro nuevo proyecto.</p>
 
 
-<p>Una vez que ya tenemos eso creado procedemos a instalar el paquete gulp, como una <b>dependencia de desarrollo</b>, mediante el comando:</p>
+<p>Una vez que ya tenemos eso creado procedemos a instalar el paquete <a href="http://frontendlabs.io/" title="gulpjs" target="_blank">gulp</a>, como una <b>dependencia de desarrollo</b>, mediante el comando:</p>
 
 <pre class="prettyprint lang-js"><code>npm install --save-dev gulp</code></pre>
 
@@ -125,7 +157,7 @@ gulp.task('mi', function(){
 
 <p>Y al ejecutarlo podremos ver el indice de mantenibilidad para cada archivo y las observaciones que gulp-complexity tiene acerca de el código que ha sido revisado.</p>
 
-<img src="http://frontendlabs.io/wp-content/uploads/2016/01/indice-mantenibilidad-javascript.png" alt="indice-mantenibilidad-javascript" width="931" height="527" class="aligncenter size-full wp-image-3129" />
+<img src="http://frontendlabs.io/wp-content/uploads/2016/01/indice-mantenibilidad-javascript.png" alt="indice-mantenibilidad-javascript" width="913" height="641" class="aligncenter size-full wp-image-3129" />
 
 
 <h3>Revisando las observaciones</h3>
@@ -134,44 +166,92 @@ gulp.task('mi', function(){
 
 <img src="http://frontendlabs.io/wp-content/uploads/2016/01/indice-mantenibilidad-javascript-ok.png" alt="indice-mantenibilidad-javascript-ok" width="797" height="155" class="aligncenter size-full wp-image-3131" />
 
-<p>En cambio los archivos: <span class="inline_file">manipulation/buildFragment.js</span>, <span class="inline_file">manipulation/getAll.js</span>, <span class="inline_file">manipulation/setGlobalEval.js</span> no han pasado la prueba, a continuación veremos ¿Por qué?</p>
+<p>En cambio los archivos: <span class="inline_file">manipulation/buildFragment.js</span>, <span class="inline_file">manipulation/getAll.js</span>, <span class="inline_file">manipulation/setGlobalEval.js</span> y <span class="inline_file">queue/demo.js</span> no han pasado la prueba, a continuación veremos ¿Por qué?</p>
 
 
-<img src="http://frontendlabs.io/wp-content/uploads/2016/01/indice-mantenibilidad-javascript-fail.png" alt="indice-mantenibilidad-javascript-fail" width="715" height="342" class="aligncenter size-full wp-image-3132" />
+<img src="http://frontendlabs.io/wp-content/uploads/2016/01/indice-mantenibilidad-javascript-fail.png" alt="indice-mantenibilidad-javascript-fail" width="913" height="465" class="aligncenter size-full wp-image-3132" />
 
-<p>Primero revisaremos el mensaje acerca del archivo: <span class="inline_file">manipulation/buildFragment.js</span>. <br>
-El mensaje nos dice que en la línea número <b>12</b> de este script se encuentra la función <span class="inline_code">buildFragment</span> la cual probablemente sea <b>demasiada complicada</b> para ser entendida por un ser humano.</p>
+<p>Primero revisaremos el mensaje acerca del archivo: <span class="inline_file">queue/demo.js</span> (este archivo lo agregué para poder explicar mejor la complejidad ciclomática).<br>
+El mensaje nos dice que en la línea número <b>1</b> de este script se encuentra la función <span class="inline_code">complexFunction</span> la cual probablemente sea <b>demasiada complicada</b> para ser entendida por un ser humano, por ende debemos poder mejorarla.</p>
 
-<p>La misma tiene un valor de <a href="https://es.wikipedia.org/wiki/Complejidad_ciclom%C3%A1tica" title="Complejidad ciclomática" target="_blank">Complejidad ciclomática</a> de <b>14</b> y un valor de <a href="https://en.wikipedia.org/wiki/Halstead_complexity_measures" title="Métricas Halstead" target="_blank">Halstead</a> de <b>31.49</b>, el mismo que proviene de un valor de Esfuerzo de <b>51 068</b>, de Volumen de <b>1621</b> y un Vocabulario de <b>73</b> palabras en total. No olvidemos que todos estos valores vienen de fórmulas y los resultados son directamente proporcionales a la cantidad del código fuente que contenga cada archivo.</p>
+<p>La misma tiene un valor de <a href="https://es.wikipedia.org/wiki/Complejidad_ciclom%C3%A1tica" title="Complejidad ciclomática" target="_blank">Complejidad ciclomática</a> de <b>4</b> y un valor de <a href="https://en.wikipedia.org/wiki/Halstead_complexity_measures" title="Métricas Halstead" target="_blank">Halstead</a> de <b>7.91</b>, el mismo que proviene de un valor de Esfuerzo de <b>958.55</b>, de Volumen de <b>121</b> y un Vocabulario de <b>11</b> palabras en total. No olvidemos que todos estos valores vienen de fórmulas y los resultados son directamente proporcionales a la cantidad del código fuente que contenga cada archivo.</p>
 
-<p>El valor más importante de esta métrica es la <b>Complejidad ciclomática</b>, por eso nos centraremos en esta, debemos revisar el archivo y lo más probable es que encontremos una gran función con demasiados caminos lógicos individuales(<i>if</i>, <i>else</i>, <i>else if</i>)</p>
-
-
-<h2>Complejidad ciclomática</h2>
-
-<p>Complejidad Ciclomática es una métrica de software que fue desarrollada por Thomas McCabe. Se utiliza para medir la complejidad de un programa (McCabe, 1976). Mide el número de caminos linealmente independientes a través del código fuente de un programa. La Complejidad Ciclomática se puede calcular de varias maneras. En la primera forma, un módulo o programa es considerado como un gráfico matemático. Para este caso es dada la siguiente fórmula:
-</p>
-
-<p>
-<b>V(g) = e - n + p</b>
-</p>
-
-</p>Donde:</p>
-
-<p>e = número de aristas en un gráfico,
-n = número de nodos en un gráfico, y
-p = número de componentes conectados</p>
-
-<p>La forma alternativa es contar el número de puntos de decisión (sentencias if, sentencias while, etcétera) en un módulo o programa, y aumentar esté en uno. Ambos métodos producen el mismo resultado. Es por eso que para facilitar el aprendizaje de este concepto usaremos la forma alternativa para contabilizar el valor de la complejidad ciclomática, cuya formula sería la siguiente:</p>
-
-<p>
-<b>V(g) = Número de condiciones + 1</b>
-</p>
+<p>El valor más importante de esta métrica es la <b>Complejidad ciclomática</b>, por eso nos centraremos en esta, debemos revisar el archivo y lo más probable es que encontremos una gran función con demasiados caminos lógicos individuales(<i>if</i>, <i>else</i>, <i>else if</i>), veamos el código de esta función:</p>
 
 
+<pre class="prettyprint lang-js"><code>
+function complexFunction(){
+    flag = true;
+    openssl = true;
+    if (flag === true) {
+        if (openssl === true) {
+            add_libs = "--libs openssl";
+        }else{
+            add_libs = "--libs common";
+        }
+    }else{
+        if (openssl === true) {
+            add_libs = "--libs openssl";
+        }else{
+            add_libs = "--libs common"; 
+        }
+    }
+    return add_libs;
+}
+</code></pre>
+
+<p>Como podemos ver, este código es algo confuso y a primera vista se puede mejorar mucho no es así?, entonces calculemos mentalmente su complejidad ciclomática, podemos ver 3 puntos de decisión (en este caso son 3 sentencias if) y entonces le sumamos 1 y obtenemos <b>4</b> como el valor de complejidad ciclomática de esta función.</p>
+
+<p>Haciendo una revisión rápida del código anterior podemos refactorizarlo y a su vez lograr mejorar su indice de mantenibilidad, dejandolo por ejemplo así.</p>
+
+<pre class="prettyprint lang-js"><code>
+function complexFunction(){
+	openssl = true;
+	add_libs = "--libs common";
+	if (openssl === true) {
+		add_libs = "--libs openssl";
+	}
+	return add_libs;
+}
+</code></pre>
+
+<h2>Conclusiones, Recomendaciones e Ideas</h2>
+
+<p>Usar este tipo de métricas cuando desarrollamos es muy importante, ya que nos permite realizar código altamente mantenible y lo mejor de eso es que no solo nos sirve a nosotros sino que también beneficiamos al equipo con el que trabajamos ó a las personas que tendrán que modificar y/o mantener nuestro código en el futuro.</p>
+
+<p>Mientras más lo uses también podrás darte cuenta que adoptarás y aprenderás buenas prácticas de desarrollo para poder superar el límite mínimo de mantenibilidad y pronto verás que casi sin que te des cuenta sólo realizarás código óptimo.</p>
+
+<p>Yendo un poco más alla, para poder trabajar con este indice de mantenibilidad podrías usar un automatizador como gulpjs, y usar su watcher para que a cada momento que vayas desarrollando esta herramienta te vaya indicando que tan mantenible es el código que estás escribiendo y detectar tus errores en tiempo de desarrollo.</p>
+
+<p>Otro uso interesante es que, si recibes un código desarrollado por otra persona o otra empresa, puedes hacer rápidamente un diagnóstico de cúan mantenible es ese código y puedes detectar las zonas rojas o las partes más complejas que tiene este, imagínate que tu cliente te pide cotizar una implementación que implica modificar código actual del sistema o portal que vayas a trabajar, esta herramienta te puede dar un vistazo rápido de cúal es el estado de ese código y podrás saber cuanto cobrar en base a que tan complejo es el codigo con el que tendrás que lidiar.</p>
+
+<p>Realmente hay muchas ideas de como utilizar esta gran herramienta, espero que le des una oportunidad y la pruebes, recuerda que gulp-complexity no es la única herramienta, también existe una herramienta para grunt.</p>
+
+<h2>¿Existen otras herramientas de analísis estático de código Javascript?</h2>
+
+<p>Por supuesto, a continuación nombraremos algunas:</p>
+
+<ul>
+<li><a target="_blank" href="https://www.npmjs.com/package/plato" title="plato" >plato</a></li>
+<li><a target="_blank" href="https://www.npmjs.com/package/cardio" title="cardio" >cardio</a></li>
+<li><a target="_blank" href="https://www.npmjs.com/package/bob" title="bob" >bob</a></li>
+<li><a target="_blank" href="https://www.npmjs.com/package/karma-complexity-preprocessor" title="karma-complexity-preprocessor" >karma cp</a></li>
+<li><a target="_blank" href="https://github.com/slyg/jscomplexity" title="jscomplexity" >jscomplexity</a></li>
+</ul>
 
 
-https://github.com/jansanchez/jquery-for-test/blob/master/src/manipulation/buildFragment.js#L12-L99
+
+<h2>¿Existen otras herramientas de analísis estático de código para otros lenguajes de programación?</h2>
+
+<p>Por supuesto, a continuación nombraremos algunas:</p>
+
+<ul>
+<li><a target="_blank" href="http://www.phpmetrics.org/" title="php metrics" >Phpmetrics</a></li>
+<li><a target="_blank" href="https://pypi.python.org/pypi/radon" title="python metrics" >Radon para python</a></li>
+<li><a target="_blank" href="http://www.virtualmachinery.com/jhawkmetricslist.htm" title="Java Metrics" >JHawk para Java</a></li>
+</ul>
+
+no olvidar nombrar las herramientas que existen en otros lenguajes
 
 
 <p>"Es importante tener en cuenta que ninguna de estas métricas pueden competir con la visión y/o percepción de un desarrollador competente. A lo sumo, son un sistema de alerta automática, que puede ayudar a identificar áreas de código que justifican una inspección más cercana por un ser humano". (Phil Booth, 2012)</p>
