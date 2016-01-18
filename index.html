@@ -160,19 +160,19 @@ gulp.task('mi', function(){
 
 <p>Y al ejecutarlo podremos ver el indice de mantenibilidad para cada archivo y las observaciones que gulp-complexity tiene acerca del código que ha sido revisado, como podemos ver a continuación.</p>
 
-<img src="http://frontendlabs.io/wp-content/uploads/2016/01/indice-mantenibilidad-javascript.png" alt="indice-mantenibilidad-javascript" width="913" height="641" class="aligncenter size-full wp-image-3129" />
+<img src="http://frontendlabs.io/wp-content/uploads/2016/01/indice-mantenibilidad-javascript.png" alt="indice de mantenibilidad y javascript" width="913" height="641" class="aligncenter size-full wp-image-3129" />
 
 
 <h3>Revisando las observaciones</h3>
 
 <p>Como podemos apreciar, todos estos archivos han pasado correctamente la validación, a su vez podemos observar que los archivos que tienen un valor de <b>más de 120</b> de indice de mantenibilidad se muestran con una barra de color verde, mientras que los que tienen <b>menos de 120</b> se muestran con un color amarillo, pero ninguno de estos tiene ningún mensaje, ni observación en el código, lo cual quiere decir que estos archivos son altamente mantenibles según esta métrica.</p>
 
-<img src="http://frontendlabs.io/wp-content/uploads/2016/01/indice-mantenibilidad-javascript-ok.png" alt="indice-mantenibilidad-javascript-ok" width="797" height="155" class="aligncenter size-full wp-image-3131" />
+<img src="http://frontendlabs.io/wp-content/uploads/2016/01/indice-mantenibilidad-javascript-ok.png" alt="indice de mantenibilidad con javascript ok" width="797" height="155" class="aligncenter size-full wp-image-3131" />
 
 <p>En cambio los archivos: <span class="inline_file">manipulation/buildFragment.js</span>, <span class="inline_file">manipulation/getAll.js</span>, <span class="inline_file">manipulation/setGlobalEval.js</span> y <span class="inline_file">queue/demo.js</span> no han pasado la prueba, a continuación veremos ¿Por qué?</p>
 
 
-<img src="http://frontendlabs.io/wp-content/uploads/2016/01/indice-mantenibilidad-javascript-fail.png" alt="indice-mantenibilidad-javascript-fail" width="913" height="465" class="aligncenter size-full wp-image-3132" />
+<img src="http://frontendlabs.io/wp-content/uploads/2016/01/indice-mantenibilidad-javascript-fail.png" alt="indice de mantenibilidad con javascript fail" width="913" height="465" class="aligncenter size-full wp-image-3132" />
 
 <p>Debido a que revisar cada archivo tomaría mucho tiempo en este artículo, solo revisaremos el archivo: <span class="inline_file">queue/demo.js</span> (este archivo lo agregué para poder explicar mejor la complejidad ciclomática). Con esto también estoy demostrando que incluso en librerías conocidas e importantes como jQuery, también hay codigo fuente poco mantenible.</p>
 
